@@ -1,0 +1,28 @@
+name: Sync public rules
+
+# See copybara GH action docs here for syncing a monorepo subdirectory to
+# the root directory in another repo
+# https://github.com/Olivr/copybara-action/blob/main/docs/basic-usage.md#subfolder-as-destinations-root
+
+on:
+- pull_request_target
+- push
+
+jobs:
+  sync-repo:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - uses: olivr/copybara-action@v1.2.3
+      with:
+        ssh_key: ${{ secrets.SYNC_RULES_SSH_KEY }}
+        access_token: ${{ secrets.SYNC_RULES_GH_TOKEN }}
+        sot_repo: sourcery-ai/core
+        destination_repo: sourcery-ai/sourcery-rules
+        push_include: sourcery/rules/public/** .github/workflows/sync-rules.yml
+        pr_move: |
+          ||sourcery/rules/public
+          sourcery/rules/public/.github||.github
