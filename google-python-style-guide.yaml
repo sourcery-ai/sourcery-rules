@@ -11,21 +11,6 @@
 
 version: '1'
 
-ignore:
-- .git
-- venv
-- .venv
-- env
-- .env
-- .tox
-
-refactor:
-  rule_types:
-  - refactoring
-  - suggestion
-  - comment
-  python_version: '3.7'
-
 rules:
 
 # ==================================================================================
