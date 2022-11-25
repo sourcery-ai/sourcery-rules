@@ -1019,7 +1019,7 @@ rules:
   pattern: |
     def ...(...,${arg_name}: ${type?} = ${default_value?},...):
       ...
-  condition: not arg_name.is_snake_case() or arg_name.is_dunder_name()
+  condition: (arg_name.is_dunder_name() or not arg_name.is_snake_case()) and not arg_name.equals("*") and not arg_name.equals("/")
   description: Use snake case for arguments
   explanation: |
     Use snake case for function and method arguments.
