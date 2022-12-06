@@ -48,6 +48,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-import
   tests:
   - match: from numpy import *
   - match: from pandas.series import *
@@ -65,6 +66,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-import
   tests:
   - match: from . import important_function
   - match: from .my_module import important_function
@@ -84,6 +86,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-standard-import-alias
   tests:
   - no-match: import pandas
   - no-match: from pandas import DataFrame
@@ -107,6 +110,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-standard-import-alias
   tests:
   - no-match: import numpy
   - no-match: from numpy import ndarray
@@ -128,6 +132,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-standard-import-alias
   tests:
   - no-match: import matplotlib.pyplot
   - no-match: from matplotlib.pyplot import Figure
@@ -148,6 +153,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-standard-import-alias
   tests:
   - no-match: import tensorflow
   - no-match: from tensorflow import keras
@@ -168,6 +174,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-standard-import-alias
   tests:
   - no-match: import datetime
   - no-match: from datetime import datetime
@@ -188,6 +195,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-standard-import-alias
   tests:
   - no-match: import tkinter
   - no-match: from tkinter import ttk
@@ -208,6 +216,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-standard-import-alias
   tests:
   - no-match: import multiprocessing
   - no-match: from multiprocessing import Pool
@@ -385,6 +394,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-lambda
   tests:
   - no-match: 'lambda x: x**2'
   - no-match: 'lambda x, y: x**y'
@@ -403,6 +413,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-lambda
   tests:
   - match: 'transformed_things = map(lambda x: x**2, things)'
     expect: transformed_things = (x**2 for x in things)
@@ -421,6 +432,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-lambda
   tests:
   - match: 'filtered_things = filter(lambda x: x > x**2, things)'
     expect: filtered_things = (x for x in things if x > x**2)
@@ -530,6 +542,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-type-annotations
   tests:
   - match: |
       def add(a, b: int):
@@ -574,6 +587,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-type-annotations
   tests:
   - match: |
       def f():
@@ -618,6 +632,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-docstrings
   tests:
   - match: |
       class CheeseShopAddress:
@@ -663,6 +678,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-docstrings
   tests:
   - match: |
       def grow(plant):
@@ -713,6 +729,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-docstrings
   tests:
   - match: |
       def hello():
@@ -859,6 +876,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-naming
   tests:
   - match: i = 0
   - no-match: initial_value = 0
@@ -898,6 +916,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-naming
   tests:
   - match: |
       def f():
@@ -950,6 +969,7 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-naming
   tests:
   - match: magic_int = 42
   - match: magic_int = 42.00
@@ -971,6 +991,8 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-naming
+  - gpsg-naming-pep8
   tests:
   - match: |
       def some_function():
@@ -1028,6 +1050,8 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-naming
+  - gpsg-naming-pep8
   tests:
   - match: |
       def placeholder(miXed):
@@ -1096,6 +1120,8 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-naming
+  - gpsg-naming-pep8
   tests:
   - match: |
       def miXed():
@@ -1147,6 +1173,8 @@ rules:
   tags:
   - google-python-style-guide
   - gpsg
+  - gpsg-naming
+  - gpsg-naming-pep8
   tests:
   - match: |
       class lower:
