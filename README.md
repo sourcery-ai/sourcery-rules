@@ -2,9 +2,9 @@
 
 This repo contains public rules definitions for Sourcery [optional rules](https://docs.sourcery.ai/Reference/Optional-Rules/).
 
-* Your contributions are welcome! 😃 Open a PR and share your cool rules here.
-* The [Sourcery team](https://sourcery.ai/about/) continuously adds new rules as well.
-* Are you having a problem where a Sourcery rule might be a good solution but not sure how? Open an issue here.
+- Your contributions are welcome! 😃 Open a PR and share your cool rules here.
+- The [Sourcery team](https://sourcery.ai/about/) continuously adds new rules as well.
+- Are you having a problem where a Sourcery rule might be a good solution but not sure how? Open an issue here.
 
 ## Enabling Optional Sourcery Rules
 
@@ -27,7 +27,7 @@ rule_settings:
 
 ### Use Optional Rules in the Command Line
 
-You can also run the [`review` command](https://docs.sourcery.ai/Reference/Command-Line/review/) of the Sourcery CLI with optional rules using the `--enable`[https://docs.sourcery.ai/Reference/Command-Line/review/#-enable] option.
+You can also run the [`review` command](https://docs.sourcery.ai/Reference/Command-Line/review/) of the Sourcery CLI with optional rules using the `--enable`\[https://docs.sourcery.ai/Reference/Command-Line/review/#-enable\] option.
 
 This is a great way to experiment when you're considering introducing some optional rules to your project.
 
