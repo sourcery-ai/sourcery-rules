@@ -14,6 +14,16 @@ rules:
 # sourcery review --enable no-str-format .
 #
 - id: no-str-format
-  description: Use fstring instead of str.format
+  description: Use f-string instead of `str.format`
+  explanation: f-string is less verbose and faster than `str.format`
   pattern: ${text}.format(...)
   condition: text.has_type("str")
+  tests:
+    - match: "'{0}. place'.format(placement)"
+    - match: "'{0}. chapter {1}'.format(nr, title)"
+    - match: |
+        template = "{0}. place"
+        template.format(placement)
+    - no-match: |
+        sth = CustomObject()
+        sth.format(placement)
