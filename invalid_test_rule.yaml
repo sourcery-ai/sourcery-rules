@@ -1,0 +1,4 @@
+rules:
+- id: simplify-empty-collection-comparison
+  description: Test rule with an already existing id.
+  pattern: placeholder
