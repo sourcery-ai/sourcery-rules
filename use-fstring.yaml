@@ -1,0 +1,19 @@
+# This file contains optional rules
+# that spot when f-string should be used
+# instead of an older string formatting mechanism.
+#
+# Related default rules:
+#
+# https://docs.sourcery.ai/Reference/Default-Rules/refactorings/use-fstring-for-concatenation/
+# https://docs.sourcery.ai/Reference/Default-Rules/refactorings/use-fstring-for-formatting/
+
+rules:
+
+# You can use this rule in the Sourcery CLI with the --enable option:
+#
+# sourcery review --enable no-str-format .
+#
+- id: no-str-format
+  description: Use fstring instead of str.format
+  pattern: ${text}.format(...)
+  condition: text.has_type("str")
