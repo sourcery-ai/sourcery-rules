@@ -18,7 +18,7 @@ rules:
 - id: remove-pdb-set_trace
   description: Remove `pdb.set_trace` calls from production code
   explanation: Breakpoints shouldn't be used in production code.
-  pattern: pdb.set_trace()
+  pattern: pdb.set_trace(...)
   replacement: ''
   tests:
   - match: |
