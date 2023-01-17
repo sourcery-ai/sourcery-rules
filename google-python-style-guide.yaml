@@ -1223,3 +1223,9 @@ rules:
   - no-match: |
       def f(a, b) -> int:
           x()
+
+rule_tags:
+  gpsg-naming-snake-case:
+  - snake-case-functions
+  - snake-case-arguments
+  - snake-case-variable-declarations
