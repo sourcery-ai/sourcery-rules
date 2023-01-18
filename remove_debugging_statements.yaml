@@ -1,0 +1,47 @@
+# These optional rules flag or remove various debugging statements.
+#
+# All rules in this file have the tag `no-debug`.
+#
+
+rules:
+- id: remove-breakpoint
+  description: Remove breakpoints from production code
+  explanation: Breakpoints shouldn't be used in production code.
+  pattern: breakpoint(...)
+  replacement: ''
+  tests:
+  - match: breakpoint()
+  - match: breakpoint("sth")
+  tags:
+  - no-debug
+
+- id: remove-pdb-set_trace
+  description: Remove `pdb.set_trace` calls from production code
+  explanation: Breakpoints shouldn't be used in production code.
+  pattern: pdb.set_trace(...)
+  replacement: ''
+  tests:
+  - match: |
+      import pdb
+      pdb.set_trace()
+  - match: |
+      import pdb as pdb_debug
+      pdb_debug.set_trace()
+  tags:
+  - no-debug
+
+- id: flag-print
+  description: Remove `print` statements from production code
+  explanation: |
+    `print` statements shouldn't be used in production code.
+    Use:
+
+    * a CLI framework for output
+    * `logger.debug()` for debugging information.
+  pattern: print(...)
+  tests:
+  - match: print("sth")
+  - match: print(x, y)
+  - no-match: custom_print("sth")
+  tags:
+  - no-debug
