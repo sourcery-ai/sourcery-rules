@@ -45,3 +45,13 @@ rules:
   - no-match: custom_print("sth")
   tags:
   - no-debug
+  
+- id: flag-streamlit-show
+  description: streamlit`s `experimental_show` in production code
+  pattern: ${package}.experimental_show(...)
+  replacement: ""
+  tests:
+    - match: st.experimental_show(df)
+    - match: streamlit.experimental_show(df)
+    - no-match: st.snow(df)
+
