@@ -45,3 +45,38 @@ rules:
   - no-match: custom_print("sth")
   tags:
   - no-debug
+
+- id: flag-streamlit-show
+  description: Don't use Streamlit's `experimental_show` in production code
+  explanation: |
+    `st.experimental_show` should be used only for debugging purposes. See the [Streamlit docs](https://docs.streamlit.io/library/api-reference/utilities/st.experimental_show) Use `st.write()` in production
+  pattern: streamlit.experimental_show(...)
+  replacement: ''
+  tests:
+  - match: |
+      import streamlit as st
+      st.experimental_show(df)
+  - match: |
+      import streamlit as st
+      def some_function():
+        st.experimental_show(df)
+  - match: |
+      import streamlit
+      streamlit.experimental_show(df)
+  - no-match: |
+      import streamlit as st
+      st.snow(df)
+  - match: |
+      from streamlit import experimental_show
+      experimental_show(something)
+  - match: |
+      from streamlit import experimental_show as exp_show
+      exp_show(something)
+  - no-match: other_package.experimental_show()
+  - no-match: |
+      import st_other_package as st
+      def some_function():
+        st.experimental_show(df)
+  tags:
+  - no-debug
+  - streamlit
