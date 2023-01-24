@@ -1,6 +1,9 @@
 # These optional rules flag or remove various debugging statements.
 #
-# All rules in this file have the tag `no-debug`.
+# All rules in this file have the tags:
+#
+# * `remove-debugging-statements`
+# * `no-debug`.
 #
 
 rules:
@@ -13,6 +16,7 @@ rules:
   - match: breakpoint()
   - match: breakpoint("sth")
   tags:
+  - remove-debugging-statements
   - no-debug
 
 - id: remove-pdb-set_trace
@@ -28,6 +32,7 @@ rules:
       import pdb as pdb_debug
       pdb_debug.set_trace()
   tags:
+  - remove-debugging-statements
   - no-debug
 
 - id: flag-print
@@ -44,6 +49,7 @@ rules:
   - match: print(x, y)
   - no-match: custom_print("sth")
   tags:
+  - remove-debugging-statements
   - no-debug
 
 - id: flag-streamlit-show
@@ -78,5 +84,6 @@ rules:
       def some_function():
         st.experimental_show(df)
   tags:
+  - remove-debugging-statements
   - no-debug
   - streamlit
