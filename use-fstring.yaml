@@ -1,0 +1,47 @@
+# This file contains optional rules
+# that spot when f-string should be used
+# instead of an older string formatting mechanism.
+#
+# Related default rules:
+#
+# https://docs.sourcery.ai/Reference/Default-Rules/refactorings/use-fstring-for-concatenation/
+# https://docs.sourcery.ai/Reference/Default-Rules/refactorings/use-fstring-for-formatting/
+
+rules:
+  # You can use this rule in the Sourcery CLI with the --enable option:
+  #
+  # sourcery review --enable no-str-format .
+  #
+  # To review with this rule and the related default f-string rules:
+  #
+  # sourcery review --enable use-fstring .
+  #
+- id: no-str-format
+  description: Use f-string instead of `str.format`
+  explanation: |
+    f-string is less verbose and faster than `str.format()`
+
+    f-string was introduced to use the same syntax and machinery as `str.format()`, but solve some of its issues:
+
+    * Verbosity.
+    * The placeholder and the replacement value are often far away from each other.
+
+    See the [Rationale section of PEP-498](https://peps.python.org/pep-0498/#rationale).
+
+  pattern: ${text}.format(...)
+  condition: text.has_type("str")
+  tests:
+  - match: "'{0}. place'.format(placement)"
+  - match: "'{0}. chapter {1}'.format(nr, title)"
+  - match: |
+      template = "{0}. place"
+      template.format(placement)
+  - no-match: |
+      sth = CustomObject()
+      sth.format(placement)
+
+rule_tags:
+  use-fstring:
+  - no-str-format
+  - use-fstring-for-concatenation
+  - use-fstring-for-formatting
