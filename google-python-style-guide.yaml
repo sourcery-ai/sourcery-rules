@@ -511,7 +511,12 @@ rules:
   pattern: |
     def ${name}(..., ${arg}: !!!=${default?}, ...):
         ...
-  condition: not name.starts_with("_") and not arg.equals("self") and not arg.equals("cls")
+  condition: |
+    not name.starts_with("_")
+    and not arg.equals("self")
+    and not arg.equals("cls")
+    and not arg.equals("*")
+    and not arg.equals("/")
   paths:
     exclude:
     - test_*.py
@@ -550,6 +555,12 @@ rules:
           pass
   - no-match: |
       def f(cls, a: int, b: str):
+          pass
+  - no-match: |
+      def f(a: int, *, b: str):
+          pass
+  - no-match: |
+      def f(a: int, /, b: str):
           pass
 
 - id: require-return-annotation
