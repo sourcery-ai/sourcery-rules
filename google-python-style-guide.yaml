@@ -721,6 +721,7 @@ rules:
     exclude:
     - test_*.py
     - '*_test.py'
+    - '__init__.py'    
   description: Modules should have docstrings
   explanation: |
     Modules (Python files) should start with docstrings describing the contents and usage of the module.
