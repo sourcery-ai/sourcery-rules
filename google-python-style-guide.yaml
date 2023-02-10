@@ -712,6 +712,38 @@ rules:
             logger.warning("growth error")
         return wrapped
 
+- id: docstrings-for-packages
+  pattern: |
+    '''!!!'''
+    ...
+  condition: pattern.in_module_scope()
+  paths:
+    include:
+    - __init__.py
+  description: Packages should have docstrings
+  explanation: |
+    Python packages should contain a docstring describing the contents and usage of the package.
+
+    From Google Style Guide [3.8.2](https://google.github.io/styleguide/pyguide.html#382-modules)
+  tags:
+  - google-python-style-guide
+  - gpsg
+  - gpsg-docstrings
+  tests:
+  - match: |
+      def hello():
+        print("hello")
+  - match: |
+      class Hello:
+        """Hello"""
+        def hello():
+          """Prints 'hello'"""
+          print("hello")
+  - no-match: |
+      """Hello module"""
+      def hello():
+        print("hello")
+
 - id: docstrings-for-modules
   pattern: |
     '''!!!'''
@@ -721,6 +753,7 @@ rules:
     exclude:
     - test_*.py
     - '*_test.py'
+    - __init__.py
   description: Modules should have docstrings
   explanation: |
     Modules (Python files) should start with docstrings describing the contents and usage of the module.
